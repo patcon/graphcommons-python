@@ -208,7 +208,7 @@ class GraphCommons(object):
     def clear_graph(self, graph_id):
         graph = self.graphs(graph_id)
         # Remove all nodes. (This also removes all edges.)
-        signals = list(map(lambda node: dict(action="node_delete", id=node.id), graph.nodes))
+        signals = list(map(lambda node: dict(action="node_delete", id=node['id']), graph.nodes))
         endpoint = "graphs/{}/add".format(graph_id)
         kwargs = dict(signals=signals)
         response = self.make_request("put", endpoint, data=kwargs)
