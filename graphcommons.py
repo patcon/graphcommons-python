@@ -83,10 +83,10 @@ class NodeType(Entity):
 class Graph(Entity):
     def __init__(self, *args, **kwargs):
         super(Graph, self).__init__(*args, **kwargs)
-        self.edges = list(map(Edge, self['edges'] or []))
-        self.nodes = list(map(Node, self['nodes'] or []))
-        self.node_types = list(map(NodeType, self['nodeTypes'] or []))
-        self.edge_types = list(map(EdgeType, self['edgeTypes'] or []))
+        self.edges = list(map(Edge, self.get('edges') or []))
+        self.nodes = list(map(Node, self.get('nodes') or []))
+        self.node_types = list(map(NodeType, self.get('nodeTypes') or []))
+        self.edge_types = list(map(EdgeType, self.get('edgeTypes') or []))
 
         # hash for quick search
         self._edges = dict((edge['id'], edge) for edge in self.edges)
